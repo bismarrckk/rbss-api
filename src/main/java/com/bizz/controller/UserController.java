@@ -10,7 +10,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bizz.controller.dto.AuthRequestDto;
 import com.bizz.controller.dto.UserDto;
-import com.bizz.service.CompanyDetailsService;
 import com.bizz.service.JwtService;
 import com.bizz.service.UserService;
+
+import exception.ResourceNotFoundException;
 
 @RestController
 @RequestMapping("/api/users")
@@ -34,7 +37,7 @@ public class UserController {
 	AuthenticationManager authManager;
 	
 	@PostMapping
-	public Object addUser(@Valid @RequestBody UserDto userDto) {
+	public Object addUser(@Valid @RequestBody UserDto userDto) throws ResourceNotFoundException {
 				
 		return this.userService.addUser(userDto);
 	}
@@ -70,5 +73,10 @@ public class UserController {
 	@PreAuthorize("hasAnyAuthority('User','Admin')")
 	public String getProfile() {
 		return "My profile";
+	}
+	@DeleteMapping("{id}")
+	public void deleteUser(@PathVariable int id) throws ResourceNotFoundException{
+		userService.deleteUser(id);
+		
 	}
 }

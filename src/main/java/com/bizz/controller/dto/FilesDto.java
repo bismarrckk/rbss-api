@@ -8,20 +8,23 @@ private String fileName;
 private String downloadUri;
 private CompanyDetails company;
 private long size;
+private int companyId;
 
 public FilesDto() {
 	super();
 }
 
-
-public FilesDto(int id, String fileName, String downloadUri, CompanyDetails company, long size) {
+public FilesDto(int id, String fileName, String downloadUri, CompanyDetails company, long size, int companyId) {
 	super();
 	this.id = id;
 	this.fileName = fileName;
 	this.downloadUri = downloadUri;
 	this.company = company;
 	this.size = size;
+	this.companyId = companyId;
 }
+
+
 
 
 public int getId() {
@@ -64,6 +67,14 @@ public long getSize() {
 
 public void setSize(long size) {
 	this.size = size;
+}
+
+public int getCompanyId() {
+	return companyId;
+}
+
+public void setCompanyId(int companyId) {
+	this.companyId = companyId;
 }
 
 
