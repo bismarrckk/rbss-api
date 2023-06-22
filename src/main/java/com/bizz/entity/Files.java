@@ -1,5 +1,7 @@
 package com.bizz.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,50 +22,49 @@ public class Files {
 	private String fileName;
 	private long size;
 	private String downloadUri;
-	@JsonBackReference(value="company-files")
+	@JsonBackReference(value="entity-files")
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="company_id")
-	private CompanyDetails company;
+	@JoinColumn(name="entity_id")
+	private Entities entity;
+	private Date uploadedAt;
 	
 	
 	public Files() {
 		super();
 	}
 	
-	public Files(int id, String fileName, long size, String downloadUri, CompanyDetails company) {
+	
+
+	public Files(int id, String fileName, long size, String downloadUri, Entities entity, Date uploadedAt) {
 		super();
 		this.id = id;
 		this.fileName = fileName;
 		this.size = size;
 		this.downloadUri = downloadUri;
-		this.company = company;
+		this.entity = entity;
+		this.uploadedAt = uploadedAt;
 	}
+
+
+
+
 
 
 
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getFileName() {
 		return fileName;
 	}
+
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
-	}
-	public String getDownloadUri() {
-		return downloadUri;
-	}
-	public void setDownloadUri(String downloadUri) {
-		this.downloadUri = downloadUri;
-	}
-	public CompanyDetails getCompany() {
-		return company;
-	}
-	public void setCompany(CompanyDetails company) {
-		this.company = company;
 	}
 
 	public long getSize() {
@@ -74,5 +75,37 @@ public class Files {
 		this.size = size;
 	}
 
+	public String getDownloadUri() {
+		return downloadUri;
+	}
+
+	public void setDownloadUri(String downloadUri) {
+		this.downloadUri = downloadUri;
+	}
+
+	public Entities getEntity() {
+		return entity;
+	}
+
+	public void setEntity(Entities entity) {
+		this.entity = entity;
+	}
+
+
+
+	public Date getUploadedAt() {
+		return uploadedAt;
+	}
+
+
+
+	public void setUploadedAt(Date uploadedAt) {
+		this.uploadedAt = uploadedAt;
+	}
+
+	
+
+	
+	
 	
 }

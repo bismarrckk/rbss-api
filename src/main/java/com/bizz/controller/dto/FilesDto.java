@@ -1,30 +1,28 @@
 package com.bizz.controller.dto;
 
-import com.bizz.entity.CompanyDetails;
+import com.bizz.entity.Entities;
 
 public class FilesDto {
 private int id;
 private String fileName;
 private String downloadUri;
-private CompanyDetails company;
+private Entities entity;
 private long size;
-private int companyId;
+private int entityId;
 
 public FilesDto() {
 	super();
 }
 
-public FilesDto(int id, String fileName, String downloadUri, CompanyDetails company, long size, int companyId) {
+public FilesDto(int id, String fileName, String downloadUri, Entities entity, long size, int entityId) {
 	super();
 	this.id = id;
 	this.fileName = fileName;
 	this.downloadUri = downloadUri;
-	this.company = company;
+	this.entity = entity;
 	this.size = size;
-	this.companyId = companyId;
+	this.entityId = entityId;
 }
-
-
 
 
 public int getId() {
@@ -51,13 +49,6 @@ public void setDownloadUri(String downloadUri) {
 	this.downloadUri = downloadUri;
 }
 
-public CompanyDetails getCompany() {
-	return company;
-}
-
-public void setCompany(CompanyDetails company) {
-	this.company = company;
-}
 
 
 public long getSize() {
@@ -69,13 +60,23 @@ public void setSize(long size) {
 	this.size = size;
 }
 
-public int getCompanyId() {
-	return companyId;
+public Entities getEntity() {
+	return entity;
 }
 
-public void setCompanyId(int companyId) {
-	this.companyId = companyId;
+public void setEntity(Entities entity) {
+	this.entity = entity;
 }
+
+public int getEntityId() {
+	return entityId;
+}
+
+public void setEntityId(int entityId) {
+	this.entityId = entityId;
+}
+
+
 
 
 }

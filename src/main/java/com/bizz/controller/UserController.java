@@ -18,28 +18,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bizz.controller.dto.AdministratorDto;
 import com.bizz.controller.dto.AuthRequestDto;
-import com.bizz.controller.dto.UserDto;
 import com.bizz.service.JwtService;
-import com.bizz.service.UserService;
+import com.bizz.service.AdminService;
 
 import exception.ResourceNotFoundException;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/admin")
 @CrossOrigin("*")
 public class UserController {
 	@Autowired 
-	UserService userService;
+	AdminService adminService;
 	@Autowired
 	JwtService jwtService;
 	@Autowired
 	AuthenticationManager authManager;
 	
 	@PostMapping
-	public Object addUser(@Valid @RequestBody UserDto userDto) throws ResourceNotFoundException {
+	public Object addAdmin(@Valid @RequestBody AdministratorDto adminDto) throws ResourceNotFoundException {
 				
-		return this.userService.addUser(userDto);
+		return this.adminService.addAdministrator(adminDto);
 	}
 	
 	@PostMapping("/authenticate")
@@ -76,7 +76,7 @@ public class UserController {
 	}
 	@DeleteMapping("{id}")
 	public void deleteUser(@PathVariable int id) throws ResourceNotFoundException{
-		userService.deleteUser(id);
+		adminService.deleteAdministrator(id);
 		
 	}
 }

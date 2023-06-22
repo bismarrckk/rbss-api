@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.bizz.entity.User;
+import com.bizz.entity.Administrator;
 
 public class UserDetailsInfo implements UserDetails {
 
@@ -22,13 +22,17 @@ public class UserDetailsInfo implements UserDetails {
 	private String email;
 	private String password;
 	private List<GrantedAuthority> authorities;
+	private int id;
+	private int entityId;
 	
 	
-	public UserDetailsInfo(User user) {
-		fullName=user.getFirsName() + user.getLastName();
+	public UserDetailsInfo(Administrator user) {
+		id=user.getAdmin_id();
+		fullName=user.getFirstName() + user.getLastName();
 		email=user.getEmail();
 		password=user.getPassword();
-		authorities=Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+		entityId=user.getEntity().getEntity_id();
+		//authorities=Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 		
 	}
 
@@ -73,5 +77,14 @@ public class UserDetailsInfo implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int getEntityId() {
+		return entityId;
+	}
+
 
 }

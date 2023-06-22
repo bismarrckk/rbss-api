@@ -4,7 +4,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.bizz.entity.CompanyDetails;
+import com.bizz.entity.Entities;
 
 public class UserDto {
 	private int id;
@@ -22,7 +22,7 @@ public class UserDto {
 	private String password;
 	private String role;
 	private int companyId; 
-	private CompanyDetails company;
+	private Entities company;
 	
 	public UserDto() {
 		super();
@@ -32,7 +32,7 @@ public class UserDto {
 			@Size(min = 4, message = "Lastname should have at least 4 characters") String lastName,
 			@Size(min = 4, message = "Username should have at least 4 characters") String userName, @Email String email,
 			@NotEmpty(message = "Password should not be null") @Size(min = 8, message = "Password should have at least 8 characters") String password,
-			String role, int companyId, CompanyDetails company) {
+			String role, int companyId, Entities company) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -108,10 +108,10 @@ public class UserDto {
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
 	}
-	public CompanyDetails getCompany() {
+	public Entities getCompany() {
 		return company;
 	}
-	public void setCompany(CompanyDetails company) {
+	public void setCompany(Entities company) {
 		this.company = company;
 	}
 
