@@ -1,56 +1,81 @@
 package com.bizz.controller.dto;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
+import com.bizz.entity.Departments;
 import com.bizz.entity.Entities;
 
 public class UserDto {
-	private int id;
-	@NotEmpty(message = "Firstname should not be null")
-	@Size(min = 4, message = "Firstname should have at least 4 characters")
+	private int userId;
 	private String firstName;
-	@Size(min = 4, message = "Lastname should have at least 4 characters")
 	private String lastName;
-	@Size(min = 4, message = "Username should have at least 4 characters")
 	private String userName;
-	@Email
 	private String email;
-	@NotEmpty(message = "Password should not be null")
-	@Size(min = 8, message = "Password should have at least 8 characters")
-	private String password;
+	private String userType;
 	private String role;
-	private int companyId; 
-	private Entities company;
-	
+	private Departments department;
+	private int departmentId;
+	private String password;
+	private int entityId;
+	private Entities entity; 
 	public UserDto() {
 		super();
 	}
-	public UserDto(int id,
-			@NotEmpty(message = "Firstname should not be null") @Size(min = 4, message = "Firstname should have at least 4 characters") String firstName,
-			@Size(min = 4, message = "Lastname should have at least 4 characters") String lastName,
-			@Size(min = 4, message = "Username should have at least 4 characters") String userName, @Email String email,
-			@NotEmpty(message = "Password should not be null") @Size(min = 8, message = "Password should have at least 8 characters") String password,
-			String role, int companyId, Entities company) {
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Departments getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Departments department) {
+		this.department = department;
+	}
+
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	public UserDto(int userId, String firstName, String lastName, String userName, String email,
+			String userType, String role, Departments department, int departmentId, String password, int entityId,
+			Entities entity) {
 		super();
-		this.id = id;
+		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
 		this.email = email;
-		this.password = password;
+		this.userType = userType;
 		this.role = role;
-		this.companyId = companyId;
-		this.company = company;
+		this.department = department;
+		this.departmentId = departmentId;
+		this.password = password;
+		this.entityId = entityId;
+		this.entity = entity;
 	}
 
-	public int getId() {
-		return id;
+
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getFirstName() {
@@ -93,29 +118,24 @@ public class UserDto {
 		this.password = password;
 	}
 
-	public String getRole() {
-		return role;
+
+	public Entities getEntity() {
+		return entity;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setEntity(Entities entity) {
+		this.entity = entity;
 	}
 
-	public int getCompanyId() {
-		return companyId;
+
+	public int getEntityId() {
+		return entityId;
 	}
 
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
-	}
-	public Entities getCompany() {
-		return company;
-	}
-	public void setCompany(Entities company) {
-		this.company = company;
+
+	public void setEntityId(int entityId) {
+		this.entityId = entityId;
 	}
 
-	
-	
 	
 }

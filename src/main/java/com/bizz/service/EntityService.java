@@ -14,5 +14,5 @@ Entities getEntityById(int id) throws ResourceNotFoundException;;
 List<Entities> getAllEntites();
 void deleteEntity(int id) throws ResourceNotFoundException;
 Entities updateEntity(EntitiesDto entity,int id) throws ResourceNotFoundException;
-
+Entities getByName(String name);
 }

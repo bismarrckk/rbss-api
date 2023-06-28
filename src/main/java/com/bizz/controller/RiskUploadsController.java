@@ -28,8 +28,10 @@ import com.bizz.controller.dto.RiskUploadsDto;
 import com.bizz.controller.dto.RiskUploadsEntityName;
 import com.bizz.entity.Entities;
 import com.bizz.entity.RiskUploads;
+import com.bizz.entity.User;
 import com.bizz.service.EntityService;
 import com.bizz.service.RiskUploadsService;
+import com.bizz.service.UserService;
 
 import exception.ResourceNotFoundException;
 import utility.FileUploadUtil;
@@ -43,13 +45,17 @@ public class RiskUploadsController {
 	ModelMapper mapper;
 	@Autowired
 	RiskUploadsService uploadService;
+	@Autowired
+	UserService userService;
 	
 	@PostMapping(consumes= {MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
 	public ResponseEntity<RiskUploads> add(@RequestParam("template") MultipartFile multipartFile,
-			@RequestParam("entityId") String entityId,@RequestParam("period") String period,@RequestParam("financialYear") String financialYear) 
+			@RequestParam("entityId") String entityId,@RequestParam("userId") String userId,@RequestParam("period") String period,@RequestParam("financialYear") String financialYear) 
 			throws ResourceNotFoundException, IOException, MessagingException{
 				
 		int entityid=Integer.parseInt(entityId);
+		int userIdd=Integer.parseInt(userId);
+		User user=userService.getUserById(userIdd);
 		Entities entity=entityService.getEntityById(entityid);
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		String filecode = FileUploadUtil.saveFile(fileName, multipartFile,entity.getEntityName(),financialYear);
@@ -61,7 +67,7 @@ public class RiskUploadsController {
 		uploadsDto.setEntity(entity);
 		uploadsDto.setPeriod(period);
 		uploadsDto.setFinancialYear(financialYear);
-		uploadsDto.setFileName(fileName);
+		uploadsDto.setFileName(financialYear+'_'+entity.getEntityName()+'_'+user.getFirstName());
 		uploadsDto.setDownloadUri("uploads/"+filecode);
 		
 		uploadService.addUploads(uploadsDto);
@@ -81,9 +87,12 @@ public class RiskUploadsController {
 	@GetMapping("/download/{id}")
 	public ResponseEntity<InputStreamResource> download(@PathVariable int id) throws IOException, ResourceNotFoundException {
 		RiskUploads files = uploadService.getById(id);
+		Entities entity=files.getEntity();
+		String entityName=entity.getEntityName();
 		String fileName=files.getFileName();
+		String fy=files.getFinancialYear();
 		String fileBasePath="C:\\Users\\bmetet\\eclipse-workspace\\rbss\\uploads\\";
-		File file = new File(fileBasePath + fileName);	 
+		File file = new File(fileBasePath +entityName+"\\"+ fy +"\\"+fileName);	 
 		
 		HttpHeaders header = new HttpHeaders();
 	    header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"");

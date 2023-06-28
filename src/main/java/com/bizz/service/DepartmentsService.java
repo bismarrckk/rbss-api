@@ -13,5 +13,5 @@ public interface DepartmentsService {
 	List<Departments> getAllDepartments();
 	void deleteDepartment(int id) throws ResourceNotFoundException;
 	Departments updateDepartment(DepartmentsDto department,int id) throws ResourceNotFoundException;
-
+	Departments getByName(String name);
 }

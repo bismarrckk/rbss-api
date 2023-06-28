@@ -1,5 +1,7 @@
 package com.bizz.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,28 +20,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bizz.controller.dto.AdministratorDto;
+import com.bizz.controller.dto.UserDto;
+import com.bizz.entity.User;
 import com.bizz.controller.dto.AuthRequestDto;
 import com.bizz.service.JwtService;
-import com.bizz.service.AdminService;
+import com.bizz.service.UserService;
 
 import exception.ResourceNotFoundException;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/user")
 @CrossOrigin("*")
 public class UserController {
-	@Autowired 
-	AdminService adminService;
+	@Autowired
+	UserService userService;
 	@Autowired
 	JwtService jwtService;
 	@Autowired
 	AuthenticationManager authManager;
 	
 	@PostMapping
-	public Object addAdmin(@Valid @RequestBody AdministratorDto adminDto) throws ResourceNotFoundException {
+	public Object addUser(@Valid @RequestBody UserDto userDto) throws ResourceNotFoundException {
 				
-		return this.adminService.addAdministrator(adminDto);
+		return this.userService.addUser(userDto);
+	}
+	@PostMapping("/internalUser")
+	public Object addInternalUser(@Valid @RequestBody UserDto userDto) throws ResourceNotFoundException {
+				
+		return this.userService.addInternalUser(userDto);
+	}
+	@GetMapping
+	public List<User> getInternalUsers(){
+		return this.userService.getAllUsers();
 	}
 	
 	@PostMapping("/authenticate")
@@ -64,19 +76,19 @@ public class UserController {
 		}
 		
 	}
-	@GetMapping("/admin")
-	@PreAuthorize("hasAuthority('Admin')")
-	public String getUsers() {
-		return "All users";
-	}
-	@GetMapping("/user")
-	@PreAuthorize("hasAnyAuthority('User','Admin')")
-	public String getProfile() {
-		return "My profile";
-	}
+//	@GetMapping("/admin")
+//	@PreAuthorize("hasAuthority('Admin')")
+//	public String getUsers() {
+//		return "All users";
+//	}
+//	@GetMapping("/user")
+//	@PreAuthorize("hasAnyAuthority('User','Admin')")
+//	public String getProfile() {
+//		return "My profile";
+//	}
 	@DeleteMapping("{id}")
 	public void deleteUser(@PathVariable int id) throws ResourceNotFoundException{
-		adminService.deleteAdministrator(id);
+		userService.deleteUser(id);
 		
 	}
 }

@@ -7,5 +7,5 @@ import com.bizz.entity.Entities;
 
 @Repository
 public interface EntityRepo extends JpaRepository<Entities,Integer>{
-
+	Entities findByEntityName(String name);
 }

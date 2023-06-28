@@ -41,10 +41,10 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf().disable()
 				   .authorizeHttpRequests()
-				   .antMatchers("/").permitAll()
+				   .antMatchers("/**").permitAll()
 				   .and()
 				   .authorizeHttpRequests()
-				   .antMatchers("/admin").authenticated()
+				   //.antMatchers("/admin").authenticated()
 				   .and()
 	                .sessionManagement()
 	                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

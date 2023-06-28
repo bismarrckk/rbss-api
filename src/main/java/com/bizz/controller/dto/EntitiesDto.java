@@ -7,7 +7,7 @@ import com.bizz.entity.Industry;
 import com.bizz.entity.KeyPersonnel;
 import com.bizz.entity.Licences;
 import com.bizz.entity.Shareholders;
-import com.bizz.entity.Administrator;
+import com.bizz.entity.User;
 
 public class EntitiesDto {
 	private int entity_id;
@@ -26,7 +26,7 @@ public class EntitiesDto {
 	private String  physicalAddress;
 	private String  officeNumber;
 	private String  county;
-	private List<Administrator> admin;
+	private List<User> admin;
 	private String status;
 	private List<Files> files;
 	private List<Shareholders> shareholders;
@@ -44,7 +44,7 @@ public class EntitiesDto {
 	public EntitiesDto(int entity_id, String entityName, Date incorporationDate, Date endOfFinancialDate,
 			String certNumber, String entityEmail, String entityPhone, String entityPin, String postalAddress,
 			String country, String town, String road, String registeredOffice, String physicalAddress,
-			String officeNumber, String county, List<Administrator> admin, String status, List<Files> files,
+			String officeNumber, String county, List<User> admin, String status, List<Files> files,
 			List<Shareholders> shareholders, List<KeyPersonnel> personnel, List<Licences> licences, Industry industry,
 			int industryId) {
 		super();
@@ -205,11 +205,11 @@ public class EntitiesDto {
 		this.county = county;
 	}
 
-	public List<Administrator> getAdmin() {
+	public List<User> getAdmin() {
 		return admin;
 	}
 
-	public void setAdmin(List<Administrator> admin) {
+	public void setAdmin(List<User> admin) {
 		this.admin = admin;
 	}
 

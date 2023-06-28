@@ -7,5 +7,5 @@ import com.bizz.entity.InternalUsers;
 
 @Repository
 public interface InternalUsersRepo extends JpaRepository<InternalUsers,Integer>{
-	
+	InternalUsers findByUsername(String username);
 }

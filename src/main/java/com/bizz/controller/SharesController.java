@@ -32,10 +32,10 @@ public class SharesController {
 	public List<Shares> getShares() {
 		return shareService.getShares();
 	}
-	@PutMapping("{id}")
+	@PutMapping
 	public Shares updateShares(@PathVariable int id,@RequestBody SharesDto sharesDto) 
 			throws ResourceNotFoundException {
-		return shareService.updateShares(sharesDto, id);
+		return shareService.updateShares(sharesDto, sharesDto.getId());
 	}
 	@DeleteMapping("{id}")
 	public void deleteShares(@PathVariable int id) throws ResourceNotFoundException {

@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.bizz.entity.Administrator;
+import com.bizz.entity.User;
 
 public class UserDetailsInfo implements UserDetails {
 
@@ -26,8 +26,8 @@ public class UserDetailsInfo implements UserDetails {
 	private int entityId;
 	
 	
-	public UserDetailsInfo(Administrator user) {
-		id=user.getAdmin_id();
+	public UserDetailsInfo(User user) {
+		id=user.getuserId();
 		fullName=user.getFirstName() + user.getLastName();
 		email=user.getEmail();
 		password=user.getPassword();

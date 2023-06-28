@@ -53,7 +53,7 @@ private String  county;
 @OneToMany(mappedBy="entity",cascade = {
         CascadeType.ALL
     })
-private List<Administrator> admin;
+private List<User> admin;
 
 private String status;
 @JsonManagedReference(value="entity-files")
@@ -94,7 +94,7 @@ public Entities() {
 public Entities(int entity_id, String entityName, Date incorporationDate, Date endOfFinancialDate, String certNumber,
 		List<Licences> licences, String entityEmail, String entityPhone, String entityPin, String postalAddress,
 		String country, String town, String road, String registeredOffice, String physicalAddress, String officeNumber,
-		String county, List<Administrator> admin, String status, List<Files> files, List<Shareholders> shareholders,
+		String county, List<User> admin, String status, List<Files> files, List<Shareholders> shareholders,
 		List<KeyPersonnel> personnel, Industry industry, List<RiskUploads> riskUploads) {
 	super();
 	this.entity_id = entity_id;
@@ -251,11 +251,11 @@ public void setCounty(String county) {
 	this.county = county;
 }
 
-public List<Administrator> getAdmin() {
+public List<User> getAdmin() {
 	return admin;
 }
 
-public void setAdmin(List<Administrator> admin) {
+public void setAdmin(List<User> admin) {
 	this.admin = admin;
 }
 

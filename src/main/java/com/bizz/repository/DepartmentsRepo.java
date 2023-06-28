@@ -8,5 +8,5 @@ import com.bizz.entity.Departments;
 @Repository
 public interface DepartmentsRepo extends JpaRepository<Departments,Integer> {
 	
-
+	Departments findByDepartmentName(String name);
 }

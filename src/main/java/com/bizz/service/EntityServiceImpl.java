@@ -61,6 +61,12 @@ ModelMapper mapper;
 		return details;
 	}
 
+	@Override
+	public Entities getByName(String name) {
+		// TODO Auto-generated method stub
+		return entityRepo.findByEntityName(name);
+	}
+
 		
 	
 
